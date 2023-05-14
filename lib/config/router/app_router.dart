@@ -1,19 +1,17 @@
-import 'package:flutter_user_form/screens/screens.dart';
-import 'package:go_router/go_router.dart';
 
-final appRouter = GoRouter(
-  initialLocation: '/',
-  routes: [
-    GoRoute(
-      path: '/',
-      name: HomeScreen.name,
-      builder: (context, state) => HomeScreen(),
-    ),
-    GoRoute(
-      path: '/user',
-      name: UserScreen.name,
-      builder: (context, state) => UserScreen(),
-    ),
 
-  ]
-);
+import 'package:flutter/material.dart';
+
+import '../../screens/screens.dart';
+
+class AppRouter {
+  static const initialRoute = UserScreen.name;
+
+  static Map<String, Widget Function(BuildContext)> routes ={
+        LoginScreen.name     : (_) => const LoginScreen(),
+        UserScreen.name      : (_) => const UserScreen(),
+        UserDataScreen.name  : (_) => const UserDataScreen(),
+
+  };
+
+}
