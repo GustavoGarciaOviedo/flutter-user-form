@@ -104,7 +104,7 @@ class _LoginForm extends StatelessWidget {
           MaterialButton(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             disabledColor: Colors.pink[200],
-            color: Color.fromARGB(255, 227, 42, 202),
+            color: const Color.fromARGB(255, 227, 42, 202),
             elevation: 0,
             
             onPressed: loginForm.isLoading ? null: () async {
