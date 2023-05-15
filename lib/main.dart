@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=> LoginFormProvider()),
         ChangeNotifierProvider(create: (_)=> UserFormProvider()),
       ],
-      child: MyApp());
+      child: const MyApp());
   }
 }
 

@@ -73,7 +73,7 @@ class _DataForm extends StatelessWidget {
           const SizedBox(height: 5,),
           Text('Nacimiento:  ${loginForm.birthdate}'),
           const SizedBox(height: 5,),
-          Text('Direccion:     ${loginForm.address}',softWrap: true,),
+          Text('Direccion:     ${loginForm.addresses}',softWrap: true,),//TODO: hacer el recorrido cuando pueda poblar la lista
           const SizedBox(height: 5,),
         ],
       ),

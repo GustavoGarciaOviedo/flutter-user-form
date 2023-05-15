@@ -51,7 +51,7 @@ TextEditingController _controller = TextEditingController();
 class _UserForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-//de esta manera ya puedo accerder al contenido de la clase provider
+
     final userForm = Provider.of<UserFormProvider>(context); //TODO:  es el lamado , pilas
 
     return Form(
@@ -168,6 +168,7 @@ class _UserForm extends StatelessWidget {
             const SizedBox( height: 10,),
 
             //DIRECCION
+
             TextFormField(
               autocorrect: false,
               keyboardType: TextInputType.streetAddress,
@@ -175,13 +176,27 @@ class _UserForm extends StatelessWidget {
                   labelText: 'Direccion',
                   hintText: 'Escribe aqui tu direccion',
                   prefixIcon: Icons.person_pin_circle_sharp),
-              onChanged: (value) => userForm.address = value,
+              onChanged: (value) => userForm.addresses = [value],
               validator: (value) {
                 if (value != null && value.length >= 6) return null;
                 return 'la direccion debe tener minimo 6 caracteres';
               },
             ),
             const SizedBox(height: 20),
+
+            // FloatingActionButton(
+            //   onPressed: () {
+            //     // Valida el formulario
+            //     if (userForm.isValidForm()) {
+            //       // Guarda los datos del formulario
+            //       userForm.formKey.currentState!.save();
+            //       // Agrega una nueva dirección vacía a la lista
+            //       userForm.addAddress('');
+                  
+            //     }
+            //   },
+            //   child: Icon(Icons.add),
+            // ),
 
             MaterialButton(
               shape: RoundedRectangleBorder(

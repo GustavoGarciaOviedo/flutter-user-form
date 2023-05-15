@@ -9,16 +9,29 @@ class UserFormProvider extends  ChangeNotifier {
   String name='';
   String lastName='';
   String birthdate='';
-  String address='';
+  List<String> addresses=[];
+ 
   bool _isLoading = false;
 
   bool get isLoading => _isLoading;
+
   set isLoading(bool value){
     _isLoading = value;
     notifyListeners();
   }
 
-bool isValidForm(){
-return formKey.currentState?.validate()??false;
+  bool isValidForm(){
+    return formKey.currentState?.validate()??false;
+  }
+
+ void addAddress(String value) {
+      addresses.add(value);
+      notifyListeners();
+      addresses.forEach((elemento) {
+     //print('la direccion es $elemento');
+    });
+  }
+
 }
-}
+
+

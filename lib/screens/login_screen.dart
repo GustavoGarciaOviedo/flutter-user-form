@@ -27,13 +27,8 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 10,),
                     Text('login',style: Theme.of(context).textTheme.headlineSmall,),
                     const SizedBox(height:20),
-                    
-                    //envuelvo el loginform porque es donde unicamente lo necesito, me relaciona el lugar 
-                    //donde tengo el  provider con el lugar donde lo necesito
-                    ChangeNotifierProvider(
-                      create: (context) => LoginFormProvider(),
-                      child: _LoginForm(),)
-                    
+                    _LoginForm(),
+
                   ],
                 ),
               ),

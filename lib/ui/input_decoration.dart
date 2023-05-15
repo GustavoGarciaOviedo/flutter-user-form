@@ -23,7 +23,7 @@ class InputDecorations {
                 hintText: hintText,
                 labelText: labelText ,
                 prefixIcon: prefixIcon!= null 
-                ? Icon(prefixIcon, color: Colors.pinkAccent, size: 19,)
+                ? Icon(prefixIcon, color: Colors.pinkAccent, size: 25,)
                 :null
 
               );
