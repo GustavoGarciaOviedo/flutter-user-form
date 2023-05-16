@@ -25,9 +25,7 @@ class UserScreen extends StatelessWidget {
             CardContainer(
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const SizedBox( height: 10,),
                   Text('Datos personales',
                       style: Theme.of(context).textTheme.bodyLarge),
                   const SizedBox(height: 20),
@@ -35,9 +33,7 @@ class UserScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 50,
-            ),
+            const SizedBox( height: 50, ),
             const Text('crea un usuario', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
           ],
         ),
@@ -52,7 +48,7 @@ class _UserForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final userForm = Provider.of<UserFormProvider>(context); //TODO:  es el lamado , pilas
+    final userForm = Provider.of<UserFormProvider>(context); 
 
     return Form(
         key: userForm.formKey,
@@ -109,20 +105,20 @@ class _UserForm extends StatelessWidget {
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9/]')),
               ],
               onChanged: (value) {
-                userForm.birthdate = _controller.text;
+                userForm.birthdate = value;
                 String text =
                     value.replaceAll('/', ''); // eliminamos las barras
-                if (text.length >= 4) {
+                if (text.length >= 3) {//TODO: ORIGINAL 4 Y ABAJO 7
                   // agregamos la primera barra si se ingresaron al menos 4 caracteres
                   text = text.substring(0, 2) + '/' + text.substring(2);
                 }
-                if (text.length >= 7) {
+                if (text.length >= 6) {
                   // agregamos la segunda barra si se ingresaron al menos 7 caracteres
                   text = text.substring(0, 5) + '/' + text.substring(5);
                 }
                 if (text.length > 10) {
                   // si se ingresaron más de 10 caracteres, eliminamos los extras
-                  text = text.substring(0, 10);
+                  text = text.substring(0, 9);
                 }
                 if (text != value) {
                   // actualizamos el valor del campo si se modificó el texto
@@ -169,34 +165,40 @@ class _UserForm extends StatelessWidget {
 
             //DIRECCION
 
-            TextFormField(
-              autocorrect: false,
-              keyboardType: TextInputType.streetAddress,
-              decoration: InputDecorations.authInputDecoration(
-                  labelText: 'Direccion',
-                  hintText: 'Escribe aqui tu direccion',
-                  prefixIcon: Icons.person_pin_circle_sharp),
-              onChanged: (value) => userForm.addresses = [value],
-              validator: (value) {
-                if (value != null && value.length >= 6) return null;
-                return 'la direccion debe tener minimo 6 caracteres';
-              },
-            ),
-            const SizedBox(height: 20),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: userForm.addresses.length, // La longitud de la lista de direcciones
+                itemBuilder: (BuildContext context, int index) {
+                  return TextFormField(
+                    autocorrect: false,
+                    keyboardType: TextInputType.streetAddress,
+                    decoration: InputDecorations.authInputDecoration(
+                      labelText: 'Direccion ${index+1}',
+                      hintText: 'Escribe aqui tu direccion',
+                      prefixIcon: Icons.person_pin_circle_sharp,
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () {
+                          userForm.removeAddress(userForm.addresses.length-1);
+                        },
+                      ),
+                    ),
+                    onChanged: (value) =>userForm.addresses[index] = value, // Actualiza la dirección en la lista
+                    validator: (value) {
+                      if (value != null && value.length >= 6) return null;
+                      return 'La dirección debe tener al menos 6 caracteres';
+                    },
+                  );
+                },
+              ),
+              TextButton(
+                onPressed: () {
+                userForm.addAddress('');
+                },
+                child: Text('Agregar direccion'),
+              ),
 
-            // FloatingActionButton(
-            //   onPressed: () {
-            //     // Valida el formulario
-            //     if (userForm.isValidForm()) {
-            //       // Guarda los datos del formulario
-            //       userForm.formKey.currentState!.save();
-            //       // Agrega una nueva dirección vacía a la lista
-            //       userForm.addAddress('');
-                  
-            //     }
-            //   },
-            //   child: Icon(Icons.add),
-            // ),
+            const SizedBox(height: 20),
 
             MaterialButton(
               shape: RoundedRectangleBorder(

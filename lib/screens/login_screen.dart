@@ -95,7 +95,6 @@ class _LoginForm extends StatelessWidget {
           const SizedBox(height: 20),
 
 
-//TODO: pasar el key global como parametro para optimizar
           MaterialButton(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             disabledColor: Colors.pink[200],

@@ -6,6 +6,7 @@ class InputDecorations {
     required String hintText,
     required String labelText,
     IconData? prefixIcon,
+    Widget? suffixIcon,
   }){
     return  InputDecoration(
                 enabledBorder: const UnderlineInputBorder(
@@ -22,9 +23,11 @@ class InputDecorations {
                 ),
                 hintText: hintText,
                 labelText: labelText ,
+                suffixIcon: suffixIcon,
                 prefixIcon: prefixIcon!= null 
                 ? Icon(prefixIcon, color: Colors.pinkAccent, size: 25,)
-                :null
+                :null,
+                
 
               );
   }

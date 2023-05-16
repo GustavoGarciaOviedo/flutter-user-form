@@ -31,6 +31,10 @@ class UserFormProvider extends  ChangeNotifier {
      //print('la direccion es $elemento');
     });
   }
+  void removeAddress(int index) {
+  addresses.removeAt(index);
+  notifyListeners();
+}
 
 }
 
